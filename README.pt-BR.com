@@ -4,7 +4,7 @@
 
 Uma demonstração simples, porém poderosa e interativa, do Event Loop do Node.js, mostrando a diferença entre a execução de código bloqueante e não-bloqueante através de um painel em tempo real.
 
-**[➡️ Link para a Demonstração ⬅️]**
+**[➡️https://event-loop-showdown.vercel.app/ ⬅️]**
 
 ---
 
