@@ -33,7 +33,6 @@
         const log = document.getElementById('log');
         const btnBlocking = document.getElementById('btnBlocking');
         const btnNonBlocking = document.getElementById('btnNonBlocking');
-        const socket = io();
 
         function addLog(message, className = '') {
             const line = document.createElement('div');
@@ -43,9 +42,9 @@
             log.scrollTop = log.scrollHeight;
         }
 
-        socket.on('ping', (message) => {
-            addLog(message, 'pong');
-        });
+        setInterval(() => {
+            addLog('pong', 'pong');
+        }, 1000);
 
         async function runTest(path) {
             btnBlocking.disabled = true;

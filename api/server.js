@@ -10,11 +10,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
+// const server = http.createServer(app);
+// const io = new Server(server);
 
 const publicPath = path.resolve(__dirname, '..', 'public');
-console.log('Servindo arquivos estáticos da pasta:', publicPath)
 app.use(express.static(publicPath));
 
 app.get('/ping', (req, res) => res.send('pong'));
@@ -43,23 +42,24 @@ app.get('/non-blocking', (req, res) => {
   });
 });
 
-io.on('connection', (socket) => {
+/*io.on('connection', (socket) => {
   console.log('Cliente conectado via Websocket!');
   socket.on('disconnect', () => {
     console.log('Cliente desconectado');
   });
-});
+ });
 
 setInterval(() => {
   io.emit('ping', 'pong');
-}, 1000);
+}, 1000); */
 
-export default server;
+export default app;
 
-if (process.env.NODE_ENV !== 'production') {
+/* if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 3333;
 
   server.listen(PORT, () => {
     console.log(`Servidor rodando localmente em http://localhost:${PORT}`);
   });
-}
+} */
+
