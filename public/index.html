@@ -34,6 +34,14 @@
         const btnBlocking = document.getElementById('btnBlocking');
         const btnNonBlocking = document.getElementById('btnNonBlocking');
 
+        function heavyCalculation() {
+          let count = 0;
+          for (let i = 0; i < 4_000_000_000; i++) {
+            count++;
+          }
+          return count;
+        }
+
         function addLog(message, className = '') {
             const line = document.createElement('div');
             line.className = className;
@@ -63,7 +71,20 @@
             }
         }
 
-        btnBlocking.addEventListener('click', () => runTest('/blocking'));
+        // btnBlocking.addEventListener('click', () => runTest('/blocking'));
+        btnBlocking.addEventListener('click', () => {
+          btnBlocking.disabled = true;
+          btnNonBlocking.disabled = true;
+          addLog('Iniciando cálculo pesado DIRETAMENTE NO NAVEGADOR...', 'info');
+
+          setTimeout(() => {
+            const result = heavyCalculation();
+            addLog(`Cálculo bloqueante no navegador finalizado. Resultado: ${result}`, 'info');
+
+            btnBlocking.disabled = false;
+            btnNonBlocking.disabled = false;
+          }, 50);
+        });
         btnNonBlocking.addEventListener('click', () => runTest('/non-blocking'));
     </script>
 </body>
